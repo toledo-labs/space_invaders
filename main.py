@@ -29,6 +29,8 @@ DARK_BLUE = (0, 0, 20)  # Very dark blue for space
 # Sound paths
 BACKGROUND_MUSIC = os.path.join('assets', 'background.wav')
 GAME_OVER_SOUND = os.path.join('assets', 'game_over.wav')
+EXPLOSION_SOUND = os.path.join('assets', 'explosion.wav')
+HIT_SOUND = os.path.join('assets', 'hit.wav')
 STAR_COLORS = [
     (255, 255, 255),    # White
     (173, 216, 230),    # Light blue
@@ -83,6 +85,8 @@ def main():
     # Load sounds
     background_music = load_sound(BACKGROUND_MUSIC, 0.3)  # Lower volume for background
     game_over_sound = load_sound(GAME_OVER_SOUND, 0.5)
+    explosion_sound = load_sound(EXPLOSION_SOUND, 0.4)
+    hit_sound = load_sound(HIT_SOUND, 0.4)
 
     # Initialize display
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -189,8 +193,12 @@ def main():
                 for enemy, bullets in hits.items():
                     score += 10
                     spawn_powerup(enemy.rect.centerx, enemy.rect.centery)
+                    if explosion_sound:
+                        explosion_sound.play()
 
                 if pygame.sprite.spritecollide(player, enemy_bullets, True):
+                    if hit_sound:
+                        hit_sound.play()
                     if player.hit() and player.lives <= 0:
                         game_over = True
                         if background_music:

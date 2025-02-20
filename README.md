@@ -38,7 +38,9 @@ A Python implementation of the classic Space Invaders arcade game using Pygame.
   - Shooting sound effects
   - Power-up collection sounds
   - Game over sound
-  - Volume-balanced audio
+  - Explosion sounds when enemies are destroyed
+  - Hit sounds when player takes damage
+  - Volume-balanced audio system
 
 ## Controls
 
@@ -92,7 +94,8 @@ space-invaders/
 │   ├── shoot.wav
 │   ├── powerup.wav
 │   ├── game_over.wav
-│   └── explosion.wav
+│   ├── explosion.wav
+│   └── hit.wav
 └── entities/           # Game entities
     ├── player.py      # Player ship logic
     ├── enemy.py       # Enemy ship logic
